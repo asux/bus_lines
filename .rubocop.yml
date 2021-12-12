@@ -23,3 +23,5 @@ Layout/LineLength:
   Max: 120
   Exclude:
     - 'config/routes.rb'
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
