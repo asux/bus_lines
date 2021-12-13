@@ -23,7 +23,14 @@ Layout/LineLength:
   Max: 120
   Exclude:
     - 'config/routes.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
 RSpec/MultipleMemoizedHelpers:
+  Max: 10
+RSpec/MultipleExpectations:
+  Max: 10
+RSpec/ExampleLength:
   Max: 10
 Style/Documentation:
   Enabled: false

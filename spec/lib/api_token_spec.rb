@@ -20,13 +20,13 @@ Rails.describe ApiToken do
   end
 
   describe '#decode' do
-    subject { api_token.decode(token) }
+    subject(:decoded) { api_token.decode(token) }
 
     let(:exp_payload) { { data: data, exp: expire.from_now.to_i } }
     let(:token) { JWT.encode(exp_payload, jwt_secret, algorithm) }
 
     it 'decodes token' do
-      expect(subject.first['data']).to eq(data)
+      expect(decoded.first['data']).to eq(data)
     end
   end
 end
