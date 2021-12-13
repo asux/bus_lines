@@ -14,8 +14,7 @@ gem 'puma', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-gem 'pry-rails'
+gem 'bcrypt', '~> 3.1.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -23,16 +22,23 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'dotenv-rails'
 gem 'jwt'
+gem 'pry-rails'
 
 group :development, :test do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'ffaker'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'shoulda-matchers'
 end
 
 group :development do
