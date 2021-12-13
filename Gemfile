@@ -29,6 +29,8 @@ gem 'pry-rails'
 group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'brakeman'
+  gem 'bundler-audit'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
