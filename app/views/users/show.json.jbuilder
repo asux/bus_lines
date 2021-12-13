@@ -1,1 +1,1 @@
-json.(@user, :id, :email, :first_name, :last_name, :role)
+json.partial! @user, as: :user
