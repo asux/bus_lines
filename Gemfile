@@ -38,6 +38,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'shoulda-matchers'
