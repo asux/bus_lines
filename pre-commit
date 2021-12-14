@@ -25,12 +25,12 @@ bundle exec brakeman -v >/dev/null 2>&1 || \
 { echo >&2 "${red}[Brakeman][Fatal]: Add 'gem \"brakeman\", require: false, group: :development' to your Gemfile"; exit 1; }
 
 # Check if rails_best_practices is installed for the current project
-#bundle exec rails_best_practices -v >/dev/null 2>&1 || \
-#{ echo >&2 "${red}[RBP][Fatal]: Add 'gem \"rails_best_practices\", require: false, group: :development' to your Gemfile"; exit 1; }
+# bundle exec rails_best_practices -v >/dev/null 2>&1 || \
+# { echo >&2 "${red}[RBP][Fatal]: Add 'gem \"rails_best_practices\", require: false, group: :development' to your Gemfile"; exit 1; }
 
 # Check if rubycritic is installed for the current project
-bundle exec rubycritic -v >/dev/null 2>&1 || \
-{ echo >&2 "${red}[RubyCritic][Fatal]: Add 'gem \"rubycritic\", require: false, group: :development' to your Gemfile"; exit 1; }
+# bundle exec rubycritic -v >/dev/null 2>&1 || \
+# { echo >&2 "${red}[RubyCritic][Fatal]: Add 'gem \"rubycritic\", require: false, group: :development' to your Gemfile"; exit 1; }
 
 # Check if rubocop is installed for the current project
 bundle exec rubocop -v >/dev/null 2>&1 || \
@@ -64,13 +64,13 @@ then
 #    echo "${green}[RBP][Info]: Everything Okay${NC}"
 #  fi
 
-  bundle exec rubycritic --no-browser
-  if [ $? -ne 0 ]; then
-    echo "${red}[RubyCritic][Error]: Fix the issues and commit again${NC}"
-    any_fail=1
-  else
-    echo "${green}[RubyCritic][Info]: Everything Okay${NC}"
-  fi
+#  bundle exec rubycritic --no-browser
+#  if [ $? -ne 0 ]; then
+#    echo "${red}[RubyCritic][Error]: Fix the issues and commit again${NC}"
+#    any_fail=1
+#  else
+#    echo "${green}[RubyCritic][Info]: Everything Okay${NC}"
+#  fi
 
   if [ ! -f '.rubocop.yml' ]; then
     echo "${yellow}[Rubocop][Warning]: No .rubocop.yml config file.${NC}"
