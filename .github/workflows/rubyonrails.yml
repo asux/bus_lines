@@ -20,12 +20,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Run security checks
-        run: |
-          bundle exec bundler-audit --update
-          bundle exec brakeman -q -w2
-      - name: Run RuboCop
-        run: bundle exec rubocop --parallel
+      - name: Run linters
+        run: ./pre-commit
   run-rspec:
     runs-on: ubuntu-latest
     steps:

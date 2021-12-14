@@ -36,11 +36,13 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'ffaker'
+  gem 'rails_best_practices'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubycritic'
   gem 'shoulda-matchers'
 end
 
