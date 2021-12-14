@@ -44,7 +44,7 @@ bundle exec rspec
 - [x] Create `User` model & resource
 - [x] Create `Location` model & resource
 - [x] Create `Line` model & resource
-- [x] Create `Ticket` model & resource
+- [ ] Create `Ticket` model & resource
 - [ ] Setup authentication
 - [ ] Ability to filter lines by departure & arrival location, departure time
 - [ ] Ability to book a ticket up to 30 minutes before departure
