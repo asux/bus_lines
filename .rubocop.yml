@@ -18,6 +18,7 @@ AllCops:
   Exclude:
     - 'db/**/*'
     - 'bin/*'
+    - 'vendor/bundle/*'
   NewCops: enable
 Layout/LineLength:
   Max: 120
