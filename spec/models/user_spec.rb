@@ -20,9 +20,9 @@ RSpec.describe User, type: :model do
   end
 
   describe '#api_token' do
-    let(:user) { create(:user) }
-
     subject { user.api_token }
+
+    let(:user) { create(:user) }
 
     it { is_expected.to be_present }
   end

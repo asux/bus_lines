@@ -14,7 +14,7 @@ RSpec.describe 'Users', type: :request do
     let!(:user) { create(:user) }
 
     it 'render users list' do
-      get "/users"
+      get '/users'
       expect(response).to have_http_status(:ok)
       item = json_response.first
       expect(item['email']).to eq(user.email)

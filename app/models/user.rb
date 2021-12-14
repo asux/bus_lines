@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  enum role: %i[passenger conductor admin]
+  enum role: { passenger: 0, conductor: 1, admin: 2 }
 
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }

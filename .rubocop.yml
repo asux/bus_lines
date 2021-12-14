@@ -11,7 +11,10 @@
 require:
   - rubocop-rails
   - rubocop-rspec
-
+  - rubocop-performance
+inherit_mode:
+  merge:
+    - Exclude
 AllCops:
   TargetRubyVersion: 3.0.3
   TargetRailsVersion: 6.1.0
@@ -23,5 +26,14 @@ Layout/LineLength:
   Max: 120
   Exclude:
     - 'config/routes.rb'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
 RSpec/MultipleMemoizedHelpers:
   Max: 10
+RSpec/MultipleExpectations:
+  Max: 10
+RSpec/ExampleLength:
+  Max: 10
+Style/Documentation:
+  Enabled: false
