@@ -21,23 +21,26 @@ else
 fi
 
 # Check if brakeman is installed for the current project
-bin/bundle exec brakeman -v >/dev/null 2>&1 || \
+bundle exec brakeman -v >/dev/null 2>&1 || \
 { echo >&2 "${red}[Brakeman][Fatal]: Add 'gem \"brakeman\", require: false, group: :development' to your Gemfile"; exit 1; }
 
 # Check if rails_best_practices is installed for the current project
-bin/bundle exec rails_best_practices -v >/dev/null 2>&1 || \
-{ echo >&2 "${red}[RBP][Fatal]: Add 'gem \"rails_best_practices\", require: false, group: :development' to your Gemfile"; exit 1; }
+#bundle exec rails_best_practices -v >/dev/null 2>&1 || \
+#{ echo >&2 "${red}[RBP][Fatal]: Add 'gem \"rails_best_practices\", require: false, group: :development' to your Gemfile"; exit 1; }
 
 # Check if rubycritic is installed for the current project
-bin/bundle exec rubycritic -v >/dev/null 2>&1 || \
+bundle exec rubycritic -v >/dev/null 2>&1 || \
 { echo >&2 "${red}[RubyCritic][Fatal]: Add 'gem \"rubycritic\", require: false, group: :development' to your Gemfile"; exit 1; }
 
 # Check if rubocop is installed for the current project
-bin/bundle exec rubocop -v >/dev/null 2>&1 || \
+bundle exec rubocop -v >/dev/null 2>&1 || \
 { echo >&2 "${red}[Rubocop][Fatal]: Add 'gem \"rubocop\", require: false, group: :development' to your Gemfile"; exit 1; }
 
 # Get only the staged files
-FILES="$(git diff --cached --name-only --diff-filter=AMC | grep "\.rb$" | tr '\n' ' ')"
+FILES="$(git diff --name-only --diff-filter=AMC | grep -E '.*\.(rb|jbuilder)' | tr '\n' ' ')"
+remove="db/schema.rb"
+FILES=${FILES/$remove/}
+echo "${green}[Files]$FILES${NC}"
 
 if [ -n "$FILES" ]
 then
@@ -45,23 +48,23 @@ then
 
   any_fail=0
 
-  bin/bundle exec brakeman -Az
-  if [ $? -ne 0]; then
+  bundle exec brakeman -Az
+  if [ $? -ne 0 ]; then
     echo "${red}[Brakeman][Error]: Fix the issues and commit again${NC}"
     any_fail=1
   else
     echo "${green}[Brakeman][Info]: Everything Okay${NC}"
   fi
 
-  bin/bundler exec rails_best_practices
-  if [ $? -ne 0 ]; then
-    echo "${red}[RBP][Error]: Fix the issues and commit again${NC}"
-    any_fail=1
-  else
-    echo "${green}[RBP][Info]: Everything Okay${NC}"
-  fi
+#  bundle exec rails_best_practices
+#  if [ $? -ne 0 ]; then
+#    echo "${red}[RBP][Error]: Fix the issues and commit again${NC}"
+#    any_fail=1
+#  else
+#    echo "${green}[RBP][Info]: Everything Okay${NC}"
+#  fi
 
-  bin/bundler exec rubycritic
+  bundle exec rubycritic --no-browser
   if [ $? -ne 0 ]; then
     echo "${red}[RubyCritic][Error]: Fix the issues and commit again${NC}"
     any_fail=1
@@ -74,7 +77,7 @@ then
   fi
 
   echo "${green}[Rubocop][Info]: ${FILES}${NC}"
-  bin/bundle exec rubocop -R ${FILES}
+  bundle exec rubocop -c .rubocop.yml --parallel ${FILES}
   if [ $? -ne 0 ]; then
     echo "${red}[Rubocop][Error]: Fix the issues and commit again${NC}"
     any_fail=1
@@ -82,7 +85,7 @@ then
     echo "${green}[Rubocop][Info]: Congrats${NC}"
   fi
 
-  if [ $any_fail -ne 0]; then
+  if [ $any_fail -ne 0 ]; then
     exit 1
   fi
 else
