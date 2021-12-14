@@ -24,12 +24,13 @@ jobs:
         run: |
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
-      - name: Run rails_best_practices
-        run: bundle exec rails_best_practices
-      - name: Run Rubycritic
-        run: bundle exec rubycritic -m main
       - name: Run RuboCop
         run: bundle exec rubocop --parallel
+#      - name: Run rails_best_practices
+#        run: bundle exec rails_best_practices
+      - name: Run Rubycritic
+        run: bundle exec rubycritic -m main
+
   run-rspec:
     runs-on: ubuntu-latest
     steps:
