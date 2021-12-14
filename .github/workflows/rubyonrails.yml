@@ -21,7 +21,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Run linters
-        run: ./pre-commit
+        run: chmod +x ./pre-commit && export GITHUB_COMMIT='HEAD~1' && ./pre-commit
   run-rspec:
     runs-on: ubuntu-latest
     steps:
