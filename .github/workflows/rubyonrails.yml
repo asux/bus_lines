@@ -28,8 +28,8 @@ jobs:
         run: bundle exec rubocop --parallel
 #      - name: Run rails_best_practices
 #        run: bundle exec rails_best_practices
-      - name: Run Rubycritic
-        run: bundle exec rubycritic -m main
+#      - name: Run Rubycritic
+#        run: bundle exec rubycritic -m main
 
   run-rspec:
     runs-on: ubuntu-latest
