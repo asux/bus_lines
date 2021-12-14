@@ -11,7 +11,10 @@
 require:
   - rubocop-rails
   - rubocop-rspec
-
+  - rubocop-performance
+inherit_mode:
+  merge:
+    - Exclude
 AllCops:
   TargetRubyVersion: 3.0.3
   TargetRailsVersion: 6.1.0
