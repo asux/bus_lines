@@ -1,24 +1,53 @@
-# README
+# Bus Lines service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is simple Rails 6.1 API-only application for booking bus tickets for passengers.
 
-Things you may want to cover:
+## Gems
+ - Ruby 3.0.3
+ - Rails 6.1.4
+ - jwt
+ - money-rails
 
-* Ruby version
+For development & testing:
+  - better_errors
+  - brakeman
+  - bundler-audit
+  - database_cleaner
+  - factory_bot_rails
+  - ffaker
+  - rspec-rails
+  - rubocop and plugins
+  - rubycritic
+  - shoulda-matchers
 
-* System dependencies
+## Database
 
-* Configuration
+SQL engine: SQLite3
 
-* Database creation
+To setup database, run:
 
-* Database initialization
+```shell
+bin/rails db:setup
+```
 
-* How to run the test suite
+## Tests
 
-* Services (job queues, cache servers, search engines, etc.)
+To run tests:
 
-* Deployment instructions
+```shell
+bundle exec rspec
+```
 
-* ...
+## TODO
+
+- [x] Setup code skeleton and testing
+- [x] Create `User` model & resource
+- [x] Create `Location` model & resource
+- [x] Create `Line` model & resource
+- [x] Create `Ticket` model & resource
+- [ ] Setup authentication
+- [ ] Ability to filter lines by departure & arrival location, departure time
+- [ ] Ability to book a ticket up to 30 minutes before departure
+- [ ] Ability to refund ticket up to 30 minutes before departure
+- [ ] Ability to add extra luggage
+- [ ] Ability for Admin to have overview of tickets sold per departure and their total profits
