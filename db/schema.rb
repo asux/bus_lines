@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_14_022049) do
+ActiveRecord::Schema.define(version: 2021_12_14_035934) do
+
+  create_table "lines", force: :cascade do |t|
+    t.integer "departure_location_id"
+    t.integer "arrival_location_id"
+    t.integer "capacity"
+    t.datetime "departure_at"
+    t.integer "duration"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "UAH", null: false
+    t.integer "tickets_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["arrival_location_id"], name: "index_lines_on_arrival_location_id"
+    t.index ["departure_location_id", "arrival_location_id", "departure_at"], name: "index_lines_on_departure_and_arrival_and_departure_at", unique: true
+    t.index ["departure_location_id"], name: "index_lines_on_departure_location_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
@@ -31,4 +47,6 @@ ActiveRecord::Schema.define(version: 2021_12_14_022049) do
     t.index ["role"], name: "index_users_on_role"
   end
 
+  add_foreign_key "lines", "locations", column: "arrival_location_id"
+  add_foreign_key "lines", "locations", column: "departure_location_id"
 end

@@ -24,6 +24,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'dotenv-rails'
 gem 'jwt'
+gem 'money-rails'
 gem 'pry-rails'
 
 group :development, :test do

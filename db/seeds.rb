@@ -15,6 +15,24 @@ unless admin.persisted?
                password: 'admin888buslines')
 end
 
-%w[Kyiv Kharkiv Odessa Lviv Dnipro].each do |city|
+locations = %w[Kyiv Kharkiv Odessa Lviv Dnipro].map do |city|
   Location.find_or_create_by(name: city)
+end
+
+(0..8).map { |h| h * 3 }.each do |hour|
+  departure_location = locations.sample
+  arrival_location = (locations - [departure_location]).sample
+  departure_at = Date.tomorrow.beginning_of_day + hour.hours
+  line = Line.find_or_initialize_by(departure_location: departure_location,
+                                    arrival_location: arrival_location,
+                                    departure_at: departure_at)
+  next unless line.new_record?
+
+  line.update(
+    duration: (2..8).to_a.sample * 60,
+    price_cents: [300, 400, 500, 600].sample * 100,
+    price_currency: 'UAH',
+    capacity: [20, 30, 40].sample,
+    tickets_count: 0
+  )
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :lines, only: %i[index]
   resources :users, only: %i[index create show]
   resources :locations, only: %i[index]
 
